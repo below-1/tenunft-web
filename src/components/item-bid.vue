@@ -5,7 +5,6 @@
       class="container q-mx-auto q-px-md q-py-lg"
     >
       <div class="row q-col-gutter-lg">
-
         <div class="col-12 col-md-6">
           <img :src="item.avatar" style="width: 100%; height: auto;" />
         </div>
@@ -131,16 +130,15 @@ const props = defineProps({
   id: String
 })
 
-const nftParams = computed(() => {
-  return {
-    id: props.id
-  }
+const id = computed(() => {
+  return parseInt(props.id)
 })
+
 const {
   item,
   status,
   loadNFT
-} = useGetNFT(nftParams)
+} = useGetNFT({ id })
 
 onMounted(loadNFT)
 </script>

@@ -8,7 +8,7 @@
         class="col-6 col-md-3"
       >
         <q-card dark @click="onDetail">
-          <img :src="item.avatar" />
+          <img :src="item.avatar" style="height: 350px;" />
           <q-card-section>
             <div>{{item.name.title}}</div>
             <div class="row items-center">

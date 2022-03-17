@@ -19,12 +19,13 @@ export function usePopularNFTS(options) {
     const limit = options.limit ? unref(options.limit) : 12
     setTimeout(() => {
       items.value = range(limit).map(i => {
+        const avatarId = (i % 6) + 1
         return {
           id: i + 1,
           name: randProduct(),
           price: randNumber({ min: 10, max: 100 }) / 100,
           likeCount: randNumber({ min: 0, max: 50 }),
-          avatar: `https://i.pravatar.cc/150?u=${i + 1}`
+          avatar: `/tenun/${avatarId}.jpg`
         }
       })
       status.value = 'success'
@@ -47,12 +48,13 @@ export function useGetNFT(options) {
     const id = unref(options.id)
     setTimeout(() => {
       const tags = range(20).map(i => randWord())
+      const avatarId = (id % 6) + 1
       const _item = {
         id,
         name: randProduct(),
         price: randNumber({ min: 10, max: 100 }) / 100,
         likeCount: randNumber({ min: 0, max: 50 }),
-        avatar: `https://i.pravatar.cc/150?u=${id}`,
+        avatar: `/tenun/${avatarId}.jpg`,
         tags,
         description: randParagraph()
       }
