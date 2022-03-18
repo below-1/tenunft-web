@@ -4,13 +4,18 @@
 
       <div class="container q-mx-auto">
         <div class="row q-py-md q-px-md">
-          <div class="flex items-center justify-center">
+          <q-btn to="/" size="sm" 
+            flat 
+            class="q-pa-none flex items-center justify-center">
             <img
               src="/logo.png"
               style="height: 2rem; width: 2rem;"
             />
-            <span class="q-ml-md text-weight-bold" style="font-size: 1.4rem;">TenuNFT</span>
-          </div>
+            <span 
+              class="q-ml-xs text-weight-bold" 
+              style="font-size: 1.4rem; text-transform: none;"
+            >TenuNFT</span>
+          </q-btn>
           <q-space class="gt-sm" />
           <q-input
             standout
@@ -39,7 +44,8 @@
           <q-btn
             flat
             icon="menu"
-            class="lt-md"
+            class="lt-md q-px-sm"
+            @click="onToggleMenu"
           />
         </div>
         <div class="lt-md row q-px-md">
@@ -55,6 +61,22 @@
       </div>
 
     </q-header>
+
+    <q-drawer dark v-model="leftDrawer">
+      <q-list>
+        <q-item 
+          v-for="menu in menus"
+          :key="menu.path"
+          :to="menu.path"
+        >
+          <q-item-section>
+            <q-item-label style="text-transform: uppercase;">
+              {{ menu.label }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
 
     <q-page-container>
       <router-view/>
@@ -83,4 +105,15 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const leftDrawer = ref(false)
+const menus = [
+  { label: 'home', path: '/' },
+  { label: 'explore', path: '/explore' }
+]
+
+function onToggleMenu() {
+  leftDrawer.value = !leftDrawer.value
+}
 </script>
